@@ -36,6 +36,13 @@ public class Knight : Piece
     public override List<Vector2Int> MoveLocations(Vector2Int gridPoint)
     {
         List<Vector2Int> locations = new List<Vector2Int>();
+
+        foreach (Vector2Int dir in KnightDirections)
+        {
+            Vector2Int nextGridPoint = new Vector2Int(gridPoint.x + dir.x, gridPoint.y + dir.y);
+            locations.Add(nextGridPoint);
+        }
+
         return locations;
     }
 }
