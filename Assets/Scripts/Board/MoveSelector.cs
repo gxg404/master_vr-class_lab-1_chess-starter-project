@@ -74,17 +74,15 @@ public class MoveSelector : MonoBehaviour
                     return;
                 }
 
-                // if it's a valid move, move the piece
-                if (GameManager.instance.PieceAtGrid(gridPoint) == null)
+                if (GameManager.instance.waitUntilMoveFinished)
                 {
-                    GameManager.instance.Move(movingPiece, gridPoint);
+                    Debug.Log("Wait till oponents move is done!");
                 }
                 else
                 {
-                    GameManager.instance.CapturePieceAt(gridPoint);
-                    GameManager.instance.Move(movingPiece, gridPoint);
+                    GameManager.instance.board.MovePiece(movingPiece, gridPoint);
+                    ExitStateNextPlayer();
                 }
-                ExitStateNextPlayer();
             }
         }
         else

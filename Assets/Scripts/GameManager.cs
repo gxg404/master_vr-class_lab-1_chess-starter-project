@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
     public Player currentPlayer;
     public Player otherPlayer;
 
+
+    public bool waitUntilMoveFinished = false;
+
     void Awake()
     {
         instance = this;
@@ -184,7 +187,6 @@ public class GameManager : MonoBehaviour
         Vector2Int startGridPoint = GridForPiece(piece);
         pieces[startGridPoint.x, startGridPoint.y] = null;
         pieces[gridPoint.x, gridPoint.y] = piece;
-        board.MovePiece(piece, gridPoint);
     }
 
     public List<Vector2Int> MovesForPiece(GameObject pieceObject)
@@ -225,4 +227,19 @@ public class GameManager : MonoBehaviour
 
         Destroy(pieceToCapture);
     }
+
+    // Logic for letting pieces return to their position slowly & passively
+    // wird zu komplex & war nicht in der Aufgabenstellung...
+    /*
+    private void PiecePositionAttraction()
+    {
+        foreach(GameObject piece in pieces)
+        {
+            if (piece.transform.position != Geometry.PointFromGrid(GridForPiece(piece)))
+            {
+                
+            }
+        }
+    }
+    */
 }
