@@ -19,6 +19,7 @@ public class CamController : MonoBehaviour
     {
         handleRotation();
         handlePanning();
+        handleZoom();
     }
 
     private void handleRotation()
@@ -47,7 +48,6 @@ public class CamController : MonoBehaviour
         }
     }
 
-    // TODO: check if it's working properly; couldn't be tested on macbook-trackpad
     private void handleZoom()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
