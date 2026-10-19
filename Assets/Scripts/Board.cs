@@ -28,12 +28,20 @@
  * THE SOFTWARE.
  */
 
+
 using UnityEngine;
 
 public class Board : MonoBehaviour
 {
     public Material defaultMaterial;
     public Material selectedMaterial;
+
+    // variables for animated movement
+    private GameObject movingPiece = null;
+    private Vector3 movingDirection = Vector3.zero;
+    private Vector3 targetPosition;
+    public float moveForce = 18f;
+    public float stopDistance = 0.1f; // etwas toleranz
 
     public GameObject AddPiece(GameObject piece, int col, int row)
     {
@@ -50,7 +58,27 @@ public class Board : MonoBehaviour
 
     public void MovePiece(GameObject piece, Vector2Int gridPoint)
     {
-        piece.transform.position = Geometry.PointFromGrid(gridPoint);
+        // adapted for linear piece movement/animation
+        movingPiece = piece;
+        targetPosition = Geometry.PointFromGrid(gridPoint);
+        targetPosition.y = piece.transform.position.y;
+
+        // activate action block until move is finished
+        GameManager.instance.waitUntilMoveFinished = true;
+
+        UpdateDirection();
+
+        Debug.Log("Piece Position: " + piece.transform.position);
+        Debug.Log("Target Position: " + targetPosition);
+        Debug.Log("Direction: " + movingDirection);
+
+        ConstantForce cf = piece.GetComponent<ConstantForce>();
+        if (cf == null)
+        {
+            cf = piece.AddComponent<ConstantForce>();
+        }
+
+        cf.force = movingDirection * moveForce;
     }
 
     public void SelectPiece(GameObject piece)
@@ -63,5 +91,64 @@ public class Board : MonoBehaviour
     {
         MeshRenderer renderers = piece.GetComponentInChildren<MeshRenderer>();
         renderers.material = defaultMaterial;
+    }
+
+    void Update()
+    {
+        if (movingPiece != null)
+        {
+            // movement will continue until distance <= stopDistance
+            Vector3 currentPos = new Vector3(movingPiece.transform.position.x, movingPiece.transform.position.y, movingPiece.transform.position.z);
+            float distance = Vector3.Distance(currentPos, targetPosition);
+            ConstantForce cf = movingPiece.GetComponent<ConstantForce>();
+
+            if (distance <= stopDistance)
+            {
+                // remove force
+                if (cf != null)
+                {
+                    Destroy(cf);
+                }
+
+                // stop rest-movement
+                Rigidbody rb = movingPiece.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.velocity = Vector3.zero;
+                    rb.angularVelocity = Vector3.zero;
+                }
+
+                // center
+                movingPiece.transform.position = new Vector3(targetPosition.x, movingPiece.transform.position.y, targetPosition.z);
+
+                // move piece logically
+                Vector2Int gridPoint = Geometry.GridFromPoint(targetPosition);
+                if (GameManager.instance.PieceAtGrid(gridPoint) == null)
+                {
+                    GameManager.instance.Move(movingPiece, gridPoint);
+                }
+                else
+                {
+                    GameManager.instance.CapturePieceAt(gridPoint);
+                    GameManager.instance.Move(movingPiece, gridPoint);
+                }
+
+                movingPiece = null;
+                GameManager.instance.waitUntilMoveFinished = false;
+            } else
+            {
+                UpdateDirection();
+                cf.force = movingDirection * moveForce;
+            }
+        }
+    }
+
+    // easier recalculation for per frame update of direction in case pieces crash and position is changed through external force
+    private void UpdateDirection()
+    {
+        if (movingPiece != null)
+        {
+            movingDirection = (targetPosition - movingPiece.transform.position).normalized;
+        }
     }
 }

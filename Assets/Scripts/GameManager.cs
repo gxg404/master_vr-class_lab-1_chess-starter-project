@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
     public Player currentPlayer;
     public Player otherPlayer;
 
+
+    public bool waitUntilMoveFinished = false;
+
     void Awake()
     {
         instance = this;
@@ -184,6 +187,59 @@ public class GameManager : MonoBehaviour
         Vector2Int startGridPoint = GridForPiece(piece);
         pieces[startGridPoint.x, startGridPoint.y] = null;
         pieces[gridPoint.x, gridPoint.y] = piece;
-        board.MovePiece(piece, gridPoint);
     }
+
+    public List<Vector2Int> MovesForPiece(GameObject pieceObject)
+    {
+        Piece piece = pieceObject.GetComponent<Piece>();
+        Vector2Int gridPoint = GridForPiece(pieceObject);
+        var locations = piece.MoveLocations(gridPoint);
+
+        // filter out offboard locations
+        locations.RemoveAll(tile => tile.x < 0 || tile.x > 7 || tile.y < 0 || tile.y > 7);
+
+        // filter out locations with friendly piece
+        // using callback function (similar to JS); each tile is passed and if returns true is removed from locations-list
+        locations.RemoveAll(tile => FriendlyPieceAt(tile));
+
+        return locations;
+    }
+
+    public void NextPlayer()
+    {
+        Player tempPlayer = currentPlayer;
+        currentPlayer = otherPlayer;
+        otherPlayer = tempPlayer;
+    }
+
+    public void CapturePieceAt(Vector2Int gridPoint)
+    {
+        GameObject pieceToCapture = PieceAtGrid(gridPoint);
+        currentPlayer.capturedPieces.Add(pieceToCapture);
+        pieces[gridPoint.x, gridPoint.y] = null;
+
+        if (pieceToCapture.GetComponent<Piece>().type == PieceType.King)
+        {
+            Debug.Log(currentPlayer.name + " wins! (^-^)");
+            Destroy(board.GetComponent<TileSelector>());
+            Destroy(board.GetComponent<MoveSelector>());
+        }
+
+        Destroy(pieceToCapture);
+    }
+
+    // Logic for letting pieces return to their position slowly & passively
+    // wird zu komplex & war nicht in der Aufgabenstellung...
+    /*
+    private void PiecePositionAttraction()
+    {
+        foreach(GameObject piece in pieces)
+        {
+            if (piece.transform.position != Geometry.PointFromGrid(GridForPiece(piece)))
+            {
+                
+            }
+        }
+    }
+    */
 }
