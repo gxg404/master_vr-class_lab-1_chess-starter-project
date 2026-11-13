@@ -1090,6 +1090,10 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.XR.Management">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.Management.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.Purchasing.Stores">
       <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Stores.dll</HintPath>
       <Private>False</Private>
@@ -1114,6 +1118,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.XR.CoreUtils">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.CoreUtils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Services.Core.Environments">
       <HintPath>Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
       <Private>False</Private>
@@ -1122,12 +1130,20 @@
       <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.XR.Management.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.Management.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.Purchasing.Codeless">
       <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Codeless.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.XR.CoreUtils.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.CoreUtils.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
@@ -1152,6 +1168,10 @@
     </Reference>
     <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
       <HintPath>Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.XR.Oculus.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.Oculus.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
@@ -1194,16 +1214,16 @@
       <HintPath>Library\ScriptAssemblies\Purchasing.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.SpatialTracking.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Analytics">
       <HintPath>Library\ScriptAssemblies\Analytics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.SpatialTracking.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.Advertisements.Editor">
@@ -1220,6 +1240,10 @@
     </Reference>
     <Reference Include="Unity.Services.Core.Components">
       <HintPath>Library\ScriptAssemblies\Unity.Services.Core.Components.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.XR.Oculus">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.Oculus.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Services.Analytics">
@@ -1268,10 +1292,6 @@
       <Project>{62A07B9B-C73B-605B-90C4-6BFF16F4F35A}</Project>
       <Name>VoiceSDK.Runtime</Name>
     </ProjectReference>
-    <ProjectReference Include="Oculus.AudioManager.Utils.Editor.csproj">
-      <Project>{4FB9F203-0698-F82D-C4A6-6A0830EA7C06}</Project>
-      <Name>Oculus.AudioManager.Utils.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Oculus.VR.csproj">
       <Project>{EC725836-CF4D-9B68-A45F-74D60DCB1E71}</Project>
       <Name>Oculus.VR</Name>
@@ -1279,6 +1299,10 @@
     <ProjectReference Include="Meta.VoiceSDK.Mic.WebGL.csproj">
       <Project>{0852C703-D022-675E-D31C-BD50D49C8B47}</Project>
       <Name>Meta.VoiceSDK.Mic.WebGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="Oculus.AudioManager.Utils.Editor.csproj">
+      <Project>{4FB9F203-0698-F82D-C4A6-6A0830EA7C06}</Project>
+      <Name>Oculus.AudioManager.Utils.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Oculus.Platform.Editor.csproj">
       <Project>{24875AB4-1CF8-BC9C-578E-274C7CCC3340}</Project>
@@ -1356,10 +1380,6 @@
       <Project>{F5088FB3-399D-E8C4-24A2-CCDF9833F9A5}</Project>
       <Name>Meta.WitAi.Conduit</Name>
     </ProjectReference>
-    <ProjectReference Include="VoiceSDK.Dictation.Runtime.csproj">
-      <Project>{12968B01-1C7A-99CF-860E-0D78E2DA5EB2}</Project>
-      <Name>VoiceSDK.Dictation.Runtime</Name>
-    </ProjectReference>
     <ProjectReference Include="VoiceSDK.Dictation.Editor.csproj">
       <Project>{D6D26FCD-F10F-31DF-3C5B-55723E82F990}</Project>
       <Name>VoiceSDK.Dictation.Editor</Name>
@@ -1395,6 +1415,10 @@
     <ProjectReference Include="Oculus.Interaction.csproj">
       <Project>{B941D426-99E2-E998-F437-996C5AA9AFE4}</Project>
       <Name>Oculus.Interaction</Name>
+    </ProjectReference>
+    <ProjectReference Include="VoiceSDK.Dictation.Runtime.csproj">
+      <Project>{12968B01-1C7A-99CF-860E-0D78E2DA5EB2}</Project>
+      <Name>VoiceSDK.Dictation.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="VoiceSDK.Editor.csproj">
       <Project>{629432F8-A28F-175A-DB1D-1074A98F4FC1}</Project>

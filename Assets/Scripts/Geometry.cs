@@ -34,9 +34,9 @@ public class Geometry
 {
     static public Vector3 PointFromGrid(Vector2Int gridPoint)
     {
-        float x = -3.5f + 1.0f * gridPoint.x;
-        float z = -3.5f + 1.0f * gridPoint.y;
-        return new Vector3(x, 0, z);
+        float x = -0.35f + 0.1f * gridPoint.x;
+        float z = -0.35f + 0.1f * gridPoint.y;
+        return new Vector3(x, 1.315f, z);
     }
 
     static public Vector2Int GridPoint(int col, int row)

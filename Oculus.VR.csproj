@@ -69,8 +69,8 @@
     <Compile Include="Assets\Oculus\VR\Scripts\Util\OVRFace.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\OVRTrackedKeyboard\OVRKeyboard.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\Util\OVRMeshRenderer.cs" />
-    <Compile Include="Assets\Oculus\VR\Scripts\Util\OVRInputModule.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\Util\OVRProfiler.cs" />
+    <Compile Include="Assets\Oculus\VR\Scripts\Util\OVRInputModule.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\OVRTelemetry\OVRTelemetryMarker.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\OVREyeGaze.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\OVRAnchor\OVRAnchorComponents\OVRLocatable.cs" />

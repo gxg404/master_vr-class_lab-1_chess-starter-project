@@ -436,8 +436,8 @@
     <Compile Include="Assets\Oculus\Interaction\Runtime\Scripts\Interaction\Models\HandGrab\HandGrabPose.cs" />
     <Compile Include="Assets\Oculus\Interaction\Runtime\Scripts\Interaction\Models\Poke\Visuals\PokeInteractableVisual.cs" />
     <Compile Include="Assets\Oculus\Interaction\Runtime\Scripts\Unity\Input\InputButton.cs" />
-    <Compile Include="Assets\Oculus\Interaction\Runtime\Scripts\PoseDetection\Debug\TransformRecognizerDebugVisual.cs" />
     <Compile Include="Assets\Oculus\Interaction\Runtime\Scripts\Interaction\Visuals\HandConfidenceVisual.cs" />
+    <Compile Include="Assets\Oculus\Interaction\Runtime\Scripts\PoseDetection\Debug\TransformRecognizerDebugVisual.cs" />
     <Compile Include="Assets\Oculus\Interaction\Runtime\Scripts\Interaction\Models\TouchHandGrab\TouchHandGrabInteractor.cs" />
     <Compile Include="Assets\Oculus\Interaction\Runtime\Scripts\Input\Controllers\ControllerDataSourceConfig.cs" />
     <Compile Include="Assets\Oculus\Interaction\Runtime\Scripts\Grab\FingerRawPinchAPI.cs" />
