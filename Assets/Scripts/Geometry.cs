@@ -32,11 +32,27 @@ using UnityEngine;
 
 public class Geometry
 {
+    // board is centered at the world origin, 8x8 tiles
+    public const float TileSize = 0.1f;
+    public const float BoardHalfSize = 4 * TileSize; // distance from center to board edge
+    // y of the board surface (piece pivot). Measured from the board collider in Board.Awake,
+    // this is only the fallback value.
+    public static float BoardSurfaceY = 1.3225f;
+    // markers are lifted slightly above the surface so they are not hidden inside the board
+    public const float MarkerOffset = 0.002f;
+
     static public Vector3 PointFromGrid(Vector2Int gridPoint)
     {
-        float x = -0.35f + 0.1f * gridPoint.x;
-        float z = -0.35f + 0.1f * gridPoint.y;
-        return new Vector3(x, 1.315f, z);
+        // center of the tile
+        float x = -BoardHalfSize + TileSize * (gridPoint.x + 0.5f);
+        float z = -BoardHalfSize + TileSize * (gridPoint.y + 0.5f);
+        return new Vector3(x, BoardSurfaceY, z);
+    }
+
+    // position for highlight markers on a tile; layer > 0 stacks markers above each other
+    static public Vector3 MarkerPointFromGrid(Vector2Int gridPoint, int layer = 1)
+    {
+        return PointFromGrid(gridPoint) + Vector3.up * (MarkerOffset * layer);
     }
 
     static public Vector2Int GridPoint(int col, int row)
@@ -46,8 +62,9 @@ public class Geometry
 
     static public Vector2Int GridFromPoint(Vector3 point)
     {
-        int col = Mathf.FloorToInt(4.0f + point.x);
-        int row = Mathf.FloorToInt(4.0f + point.z);
+        // inverse of PointFromGrid (was still using a tile size of 1 before the rescale)
+        int col = Mathf.FloorToInt((point.x + BoardHalfSize) / TileSize);
+        int row = Mathf.FloorToInt((point.z + BoardHalfSize) / TileSize);
         return new Vector2Int(col, row);
     }
 }

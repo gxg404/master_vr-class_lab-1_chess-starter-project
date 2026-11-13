@@ -43,6 +43,20 @@ public class Board : MonoBehaviour
     public float moveForce = 18f;
     public float stopDistance = 0.1f; // etwas toleranz
 
+    void Awake()
+    {
+        // measure the real board surface height (ChessBoard is a child of Board and the only collider here before pieces are added)
+        Collider boardCollider = GetComponentInChildren<Collider>();
+        if (boardCollider != null)
+        {
+            Geometry.BoardSurfaceY = boardCollider.bounds.max.y;
+        }
+        else
+        {
+            Debug.LogWarning("Board: no collider found, using default board surface height " + Geometry.BoardSurfaceY);
+        }
+    }
+
     public GameObject AddPiece(GameObject piece, int col, int row)
     {
         Vector2Int gridPoint = Geometry.GridPoint(col, row);
@@ -79,6 +93,23 @@ public class Board : MonoBehaviour
         }
 
         cf.force = movingDirection * moveForce;
+    }
+
+    // Puts a (released) piece upright onto the center of the given tile and stops all physical movement
+    public void PlacePiece(GameObject piece, Vector2Int gridPoint)
+    {
+        Vector3 position = Geometry.PointFromGrid(gridPoint);
+        Quaternion rotation = Quaternion.identity; // same rotation as in AddPiece
+
+        Rigidbody rb = piece.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.position = position;
+            rb.rotation = rotation;
+        }
+        piece.transform.SetPositionAndRotation(position, rotation);
     }
 
     public void SelectPiece(GameObject piece)

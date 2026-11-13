@@ -61,6 +61,12 @@ public class GameManager : MonoBehaviour
 
     public bool waitUntilMoveFinished = false;
 
+    [Tooltip("Grabbers of both hands (CustomHandLeft/Right). Found automatically if left empty.")]
+    public OVRGrabber[] grabbers;
+    [Tooltip("Hand trigger value above which a piece counts as grabbed")]
+    [Range(0f, 1f)]
+    public float grabThreshold = 0.5f;
+
     void Awake()
     {
         instance = this;
@@ -68,6 +74,11 @@ public class GameManager : MonoBehaviour
 
     void Start ()
     {
+        if (grabbers == null || grabbers.Length == 0)
+        {
+            grabbers = FindObjectsOfType<OVRGrabber>();
+        }
+
         pieces = new GameObject[8, 8];
 
         white = new Player("white", true);
@@ -203,6 +214,69 @@ public class GameManager : MonoBehaviour
         locations.RemoveAll(tile => FriendlyPieceAt(tile));
 
         return locations;
+    }
+
+    public bool IsGrabTriggerPressed()
+    {
+        return OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) > grabThreshold
+            || OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > grabThreshold;
+    }
+
+    // All chess pieces (still on the board) that are currently held by one of the hands
+    public List<GameObject> HeldPieces()
+    {
+        List<GameObject> held = new List<GameObject>();
+        foreach (OVRGrabber grabber in grabbers)
+        {
+            if (grabber == null || grabber.grabbedObject == null)
+            {
+                continue;
+            }
+
+            GameObject piece = grabber.grabbedObject.gameObject;
+            if (GridForPiece(piece).x >= 0)
+            {
+                held.Add(piece);
+            }
+        }
+        return held;
+    }
+
+    // Logical move incl. capturing (used when a grabbed piece is released on a valid tile)
+    public void MoveOrCapture(GameObject piece, Vector2Int gridPoint)
+    {
+        GameObject target = PieceAtGrid(gridPoint);
+        if (target != null && target != piece)
+        {
+            CapturePieceAt(gridPoint);
+        }
+        Move(piece, gridPoint);
+        board.PlacePiece(piece, gridPoint);
+    }
+
+    // Puts every piece that is not currently held back onto its logical tile.
+    // Keeps the physical board in sync after pieces were pushed by hands or dropped on invalid tiles.
+    public void SnapAllPieces()
+    {
+        for (int col = 0; col < 8; col++)
+        {
+            for (int row = 0; row < 8; row++)
+            {
+                GameObject piece = pieces[col, row];
+                if (piece == null)
+                {
+                    continue;
+                }
+
+                OVRGrabbable grabbable = piece.GetComponent<OVRGrabbable>();
+                if (grabbable != null && grabbable.isGrabbed)
+                {
+                    continue;
+                }
+
+                board.PlacePiece(piece, new Vector2Int(col, row));
+            }
+        }
     }
 
     public void NextPlayer()

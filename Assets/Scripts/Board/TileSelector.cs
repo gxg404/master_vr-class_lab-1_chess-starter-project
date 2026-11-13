@@ -1,22 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
+// State 1: waits until the current player grabs one of their pieces with a touch controller.
 public class TileSelector : MonoBehaviour
 {
-    public GameObject tileHighlightPrefab;
-
-    private GameObject tileHighlight;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Vector2Int gridPoint = Geometry.GridPoint(0, 0);
-        Vector3 point = Geometry.PointFromGrid(gridPoint);
-        tileHighlight = Instantiate(tileHighlightPrefab, point, Quaternion.identity, gameObject.transform);
-        tileHighlight.SetActive(false);
-    }
+    // true if a piece was grabbed that may not be moved (opponent's piece) -> put it back after release
+    private bool needsResnap = false;
 
     public void EnterState()
     {
@@ -26,39 +16,39 @@ public class TileSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        // selection via grabbing (replaces mouse + raycasting)
+        List<GameObject> heldPieces = GameManager.instance.HeldPieces();
 
-        if (Physics.Raycast(ray, out hit))
+        if (GameManager.instance.IsGrabTriggerPressed())
         {
-            Vector3 point = hit.point;
-            Vector2Int gridPoint = Geometry.GridFromPoint(point);
-
-            tileHighlight.SetActive(true);
-            tileHighlight.transform.position = Geometry.PointFromGrid(gridPoint);
-
-            if (Input.GetMouseButtonDown(0))
+            foreach (GameObject piece in heldPieces)
             {
-                GameObject selectedPiece = GameManager.instance.PieceAtGrid(gridPoint);
-                if (GameManager.instance.DoesPieceBelongToCurrentPlayer(selectedPiece))
+                if (GameManager.instance.DoesPieceBelongToCurrentPlayer(piece))
                 {
-                    // 1. the piece is selected
-                    GameManager.instance.SelectPiece(selectedPiece);
-                    // 2. TileSelector is disabled and selectedPiece passed as movingPiece to MoveSelector
-                    ExitState(selectedPiece);
+                    // 1. the piece is selected (colored)
+                    GameManager.instance.SelectPiece(piece);
+                    // 2. TileSelector is disabled and piece passed as movingPiece to MoveSelector
+                    ExitState(piece);
+                    return;
                 }
             }
         }
-        else
+
+        if (heldPieces.Count > 0)
         {
-            tileHighlight.SetActive(false);
+            // only pieces of the other player are held
+            needsResnap = true;
+        }
+        else if (needsResnap)
+        {
+            needsResnap = false;
+            GameManager.instance.SnapAllPieces();
         }
     }
 
     private void ExitState(GameObject movingPiece)
     {
         this.enabled = false;
-        tileHighlight.SetActive(false);
         MoveSelector move = GetComponent<MoveSelector>();
         move.EnterState(movingPiece);
     }
