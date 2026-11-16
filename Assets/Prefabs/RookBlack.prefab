@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4200905255690408}
   - component: {fileID: 33905566611566264}
   - component: {fileID: 23897026787626754}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RookBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 9050075355982701608}
   - component: {fileID: 2010240806628926261}
   - component: {fileID: 2559483306992554557}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RookBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

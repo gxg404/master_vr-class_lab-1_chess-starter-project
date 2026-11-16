@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2375893292690669882}
   - component: {fileID: 3031524826251596112}
   - component: {fileID: 4973799506569918750}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PawnWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 4260611664618092}
   - component: {fileID: 33899103176250902}
   - component: {fileID: 23956561443697276}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PawnWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

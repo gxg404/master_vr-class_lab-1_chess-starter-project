@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8573898316069182326}
   - component: {fileID: -6750983068803292658}
   - component: {fileID: -1087752517493158460}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KnightBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 4574334154239224}
   - component: {fileID: 33647671303767512}
   - component: {fileID: 23340864294145978}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KnightBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4909070466849830}
   - component: {fileID: 33535493371859870}
   - component: {fileID: 23734413429402958}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BishopBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -8153272120969906204}
   - component: {fileID: 5823962885223895689}
   - component: {fileID: -2816539232953606263}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BishopBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

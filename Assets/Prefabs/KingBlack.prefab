@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4747451341160848}
   - component: {fileID: 33237013683627058}
   - component: {fileID: 23389617652488916}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KingBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -389977301967180495}
   - component: {fileID: 5194931600527387790}
   - component: {fileID: 475748775961221717}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KingBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

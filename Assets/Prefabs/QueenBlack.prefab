@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4344678019757078}
   - component: {fileID: 33337560449056452}
   - component: {fileID: 23799436853138196}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: QueenBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1412240747463502343}
   - component: {fileID: 5103543109691423992}
   - component: {fileID: 2960728683348278999}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: QueenBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

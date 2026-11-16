@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4039966110877416}
   - component: {fileID: 33165528208952704}
   - component: {fileID: 23879078153895756}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PawnBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 4350167079887237974}
   - component: {fileID: 8958308039523531773}
   - component: {fileID: -7836441491856531876}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PawnBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

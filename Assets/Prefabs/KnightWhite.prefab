@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4464707426480042}
   - component: {fileID: 33912770636979602}
   - component: {fileID: 23448017133815252}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KnightWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -3254169398556572447}
   - component: {fileID: -6501661104277857274}
   - component: {fileID: 3605683719151702815}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KnightWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

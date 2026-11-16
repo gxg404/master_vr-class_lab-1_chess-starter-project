@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -967066667698046194}
   - component: {fileID: 4851195374156146424}
   - component: {fileID: -3245705423345250892}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: QueenWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 4729523509610772}
   - component: {fileID: 33348617860402408}
   - component: {fileID: 23191477354534846}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: QueenWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

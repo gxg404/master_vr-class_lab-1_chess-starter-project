@@ -33,7 +33,7 @@ using UnityEngine;
 public class Geometry
 {
     // board is centered at the world origin, 8x8 tiles
-    public const float TileSize = 0.1f;
+    public const float TileSize = 0.0995f;
     public const float BoardHalfSize = 4 * TileSize; // distance from center to board edge
     // y of the board surface (piece pivot). Measured from the board collider in Board.Awake,
     // this is only the fallback value.
